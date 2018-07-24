@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pc-bc-x509-certification-authority</groupId>
+  <artifactId>pc-bc-x509-certification-authority</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>pc-bc-x509-certification-authority</name>
+  <description>Java_Certification_Authority</description>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+<dependency>
+    <groupId>bouncycastle</groupId>
+    <artifactId>bcprov-jdk16</artifactId>
+    <version>140</version>
+</dependency>
+  </dependencies>
+</project>
