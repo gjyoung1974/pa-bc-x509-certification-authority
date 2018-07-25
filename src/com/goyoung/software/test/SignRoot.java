@@ -17,6 +17,9 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.security.auth.x500.X500Principal;
+
+import org.bouncycastle.asn1.x509.BasicConstraints;
+import org.bouncycastle.asn1.x509.X509Extensions;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
 
@@ -54,6 +57,7 @@ public class SignRoot {
 		certGen.setSubjectDN(dnName); // note: same as issuer
 		certGen.setPublicKey(keypair.getPublic());
 		certGen.setSignatureAlgorithm("SHA256WithRSA");
+		certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(true, 0));
 
 		X509Certificate cert = certGen.generate(keypair.getPrivate(), "BC");
 		System.out.println(cert);

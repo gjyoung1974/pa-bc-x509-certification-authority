@@ -50,7 +50,7 @@ public class SignEECert {
             InvalidKeySpecException, CertificateParsingException {
         Security.addProvider(new BouncyCastleProvider());
 
-        File privKeyFile = new File("./test-sub-ca-priv.der");
+        File privKeyFile = new File("./test-root-ca-priv.der");
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(privKeyFile));
 
         byte[] privKeyBytes = new byte[(int) privKeyFile.length()];
@@ -81,7 +81,7 @@ public class SignEECert {
 
         X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
         X500Principal sName = new X500Principal("CN=fleet.verygoodsecurity.io, OU=Fleet-Test, O=VGS Inc, C=US");
-        X500Principal iName = new X500Principal("CN=VGS DEV Issuing CA, OU=Very Good DEV Certification Authority, O=VGS Inc, C=US");
+        X500Principal iName = new X500Principal("CN=DEV ROOT Certification Authority, OU=Very Good DEV Certification Authority, O=VGS Inc, C=US");
 
         certGen.setSerialNumber(serialNumber);
         certGen.setIssuerDN(iName);
@@ -91,8 +91,8 @@ public class SignEECert {
         certGen.setPublicKey(keypair.getPublic());
         certGen.setSignatureAlgorithm("SHA256WithRSA");
 
-        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment | KeyUsage.dataEncipherment );
-        X509Extension extension = new X509Extension(false, new DEROctetString(ku));
+//        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment | KeyUsage.dataEncipherment );
+//        X509Extension extension = new X509Extension(false, new DEROctetString(ku));
 
 //        Vector<DERObjectIdentifier> oidvec = new Vector<DERObjectIdentifier>();
 //        oidvec.add(X509Extensions.ExtendedKeyUsage);
@@ -117,7 +117,7 @@ public class SignEECert {
 
 
         certGen.addExtension(X509Extensions.ExtendedKeyUsage, false, new ExtendedKeyUsage(KeyPurposeId.id_kp_serverAuth));
-        certGen.addExtension(X509Extensions.KeyUsage, false, extension.getValue());
+        certGen.addExtension(X509Extensions.KeyUsage, false, new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment | KeyUsage.dataEncipherment ));
         certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(false));
         certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, SKIextension.getValue());
 
