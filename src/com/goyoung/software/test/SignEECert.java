@@ -91,32 +91,33 @@ public class SignEECert {
         certGen.setPublicKey(keypair.getPublic());
         certGen.setSignatureAlgorithm("SHA256WithRSA");
 
-        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment);
+        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment | KeyUsage.dataEncipherment );
         X509Extension extension = new X509Extension(false, new DEROctetString(ku));
 
-        Vector<DERObjectIdentifier> oidvec = new Vector<DERObjectIdentifier>();
-        oidvec.add(X509Extensions.ExtendedKeyUsage);
-        Vector<DERObjectIdentifier> oids = new Vector<DERObjectIdentifier>();
-        Vector<X509Extension> values = new Vector<X509Extension>();
-
-        ExtendedKeyUsage extendedKeyUsage1 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
-        X509Extension extendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage1));
-
-        ExtendedKeyUsage extendedKeyUsage2 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
-        X509Extension EextendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage2));
-
-        // DERSet(attribute),
-        oids.add(X509Extensions.ExtendedKeyUsage);
-        values.add(new X509Extension(false, new DEROctetString(extendedKeyUsage.getValue())));
-
-        oids.add(X509Extensions.ExtendedKeyUsage);
-        values.add(new X509Extension(false, new DEROctetString(EextendedKeyUsage.getValue())));
+//        Vector<DERObjectIdentifier> oidvec = new Vector<DERObjectIdentifier>();
+//        oidvec.add(X509Extensions.ExtendedKeyUsage);
+//        Vector<DERObjectIdentifier> oids = new Vector<DERObjectIdentifier>();
+//        Vector<X509Extension> values = new Vector<X509Extension>();
+//
+//        ExtendedKeyUsage extendedKeyUsage1 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
+//        X509Extension extendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage1));
+//
+//        ExtendedKeyUsage extendedKeyUsage2 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
+//        X509Extension EextendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage2));
+//
+//        // DERSet(attribute),
+//        oids.add(X509Extensions.ExtendedKeyUsage);
+//        values.add(new X509Extension(false, new DEROctetString(extendedKeyUsage1)));
+//        values.add(new X509Extension(false, new DEROctetString(extendedKeyUsage1)));
+//
+//        oids.add(X509Extensions.ExtendedKeyUsage);
+//        values.add(new X509Extension(false, new DEROctetString(EextendedKeyUsage.getValue())));
 
         X509Extension SKIextension = new X509Extension(false, new DEROctetString(new SubjectKeyIdentifierStructure(publicKey)));
 
 
-        certGen.addExtension(X509Extensions.ExtendedKeyUsage, true, new ExtendedKeyUsage(KeyPurposeId.id_kp_serverAuth));
-        certGen.addExtension(X509Extensions.KeyUsage, true, extension.getValue());
+        certGen.addExtension(X509Extensions.ExtendedKeyUsage, false, new ExtendedKeyUsage(KeyPurposeId.id_kp_serverAuth));
+        certGen.addExtension(X509Extensions.KeyUsage, false, extension.getValue());
         certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(false));
         certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, SKIextension.getValue());
 
