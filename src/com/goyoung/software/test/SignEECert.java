@@ -25,6 +25,7 @@ import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.security.auth.x500.X500Principal;
@@ -43,98 +44,97 @@ import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
 
 public class SignEECert {
 
-	@SuppressWarnings("deprecation")
-	public static void main(String[] args) throws CertificateEncodingException, InvalidKeyException,
-			IllegalStateException, NoSuchProviderException, NoSuchAlgorithmException, SignatureException, IOException,
-			InvalidKeySpecException, CertificateParsingException {
-		Security.addProvider(new BouncyCastleProvider());
+    @SuppressWarnings("deprecation")
+    public static void main(String[] args) throws CertificateEncodingException, InvalidKeyException,
+            IllegalStateException, NoSuchProviderException, NoSuchAlgorithmException, SignatureException, IOException,
+            InvalidKeySpecException, CertificateParsingException {
+        Security.addProvider(new BouncyCastleProvider());
 
-		File privKeyFile = new File("./test-sub-ca-priv.der");
-		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(privKeyFile));
+        File privKeyFile = new File("./test-sub-ca-priv.der");
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(privKeyFile));
 
-		byte[] privKeyBytes = new byte[(int) privKeyFile.length()];
-		bis.read(privKeyBytes);
-		bis.close();
-		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-		KeySpec ks = new PKCS8EncodedKeySpec(privKeyBytes);
-		RSAPrivateKey caPrivKey = (RSAPrivateKey) keyFactory.generatePrivate(ks);
+        byte[] privKeyBytes = new byte[(int) privKeyFile.length()];
+        bis.read(privKeyBytes);
+        bis.close();
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        KeySpec ks = new PKCS8EncodedKeySpec(privKeyBytes);
+        RSAPrivateKey caPrivKey = (RSAPrivateKey) keyFactory.generatePrivate(ks);
 
-		// Generate a 1024-bit RSA key pair
-		KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-		keyGen.initialize(2048);
-		KeyPair keypair = keyGen.genKeyPair();
-		PublicKey publicKey = keypair.getPublic();
-		Calendar cal = Calendar.getInstance();
+        // Generate a 1024-bit RSA key pair
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(2048);
+        KeyPair keypair = keyGen.genKeyPair();
+        PublicKey publicKey = keypair.getPublic();
+        Calendar cal = Calendar.getInstance();
 
-		// cal.add(cal.getTime());
-		Date startDate = cal.getTime();
-		Date expiryDate = cal.getTime();
+        // cal.add(cal.getTime());
+        Date startDate = cal.getTime();
+        Date expiryDate = cal.getTime();
 
-		expiryDate.setMonth(expiryDate.getMonth() + 15);
-		BigInteger serialNumber = BigInteger.valueOf(Long.valueOf("5")); // serial
-																			// number
-																			// for
-																			// certificate
+        expiryDate.setMonth(expiryDate.getMonth() + 36);
+        BigInteger serialNumber = new BigInteger(256, new Random());
+        // set it manually:
+        // BigInteger serialNumber = BigInteger.valueOf(Long.valueOf("5")); // serial
+        // number
+        // for
+        // certificate
 
-		X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-		X500Principal sName = new X500Principal("CN=v-goyoung-C65Oracle.corp.ebay.com, OU=BML-Test, O=eBay Inc, C=US");
-		X500Principal iName = new X500Principal("CN=eBay Inc. INTERMEDIATE, OU=TestCA, O=eBay Inc, C=US");
+        X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
+        X500Principal sName = new X500Principal("CN=fleet.verygoodsecurity.io, OU=Fleet-Test, O=VGS Inc, C=US");
+        X500Principal iName = new X500Principal("CN=VGS DEV Issuing CA, OU=Very Good DEV Certification Authority, O=VGS Inc, C=US");
 
-		certGen.setSerialNumber(serialNumber);
-		certGen.setIssuerDN(iName);
-		certGen.setNotBefore(startDate);
-		certGen.setNotAfter(expiryDate);
-		certGen.setSubjectDN(sName); // note: same as issuer
-		certGen.setPublicKey(keypair.getPublic());
-		certGen.setSignatureAlgorithm("SHA256WithRSA");
+        certGen.setSerialNumber(serialNumber);
+        certGen.setIssuerDN(iName);
+        certGen.setNotBefore(startDate);
+        certGen.setNotAfter(expiryDate);
+        certGen.setSubjectDN(sName); // note: same as issuer
+        certGen.setPublicKey(keypair.getPublic());
+        certGen.setSignatureAlgorithm("SHA256WithRSA");
 
-		KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment);
-		X509Extension extension = new X509Extension(false, new DEROctetString(ku));
+        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyEncipherment);
+        X509Extension extension = new X509Extension(false, new DEROctetString(ku));
 
-		Vector<DERObjectIdentifier> oidvec = new Vector<DERObjectIdentifier>();
-		oidvec.add(X509Extensions.ExtendedKeyUsage);
-		Vector<DERObjectIdentifier> oids = new Vector<DERObjectIdentifier>();
-		Vector<X509Extension> values = new Vector<X509Extension>();
+        Vector<DERObjectIdentifier> oidvec = new Vector<DERObjectIdentifier>();
+        oidvec.add(X509Extensions.ExtendedKeyUsage);
+        Vector<DERObjectIdentifier> oids = new Vector<DERObjectIdentifier>();
+        Vector<X509Extension> values = new Vector<X509Extension>();
 
-		ExtendedKeyUsage extendedKeyUsage1 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
-		X509Extension extendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage1));
+        ExtendedKeyUsage extendedKeyUsage1 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
+        X509Extension extendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage1));
 
-		ExtendedKeyUsage extendedKeyUsage2 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
-		X509Extension EextendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage2));
+        ExtendedKeyUsage extendedKeyUsage2 = new ExtendedKeyUsage(KeyPurposeId.id_kp_clientAuth);
+        X509Extension EextendedKeyUsage = new X509Extension(false, new DEROctetString(extendedKeyUsage2));
 
-		// DERSet(attribute),
+        // DERSet(attribute),
+        oids.add(X509Extensions.ExtendedKeyUsage);
+        values.add(new X509Extension(false, new DEROctetString(extendedKeyUsage.getValue())));
 
-		oids.add(X509Extensions.ExtendedKeyUsage);
-		values.add(new X509Extension(false, new DEROctetString(extendedKeyUsage.getValue())));
+        oids.add(X509Extensions.ExtendedKeyUsage);
+        values.add(new X509Extension(false, new DEROctetString(EextendedKeyUsage.getValue())));
 
-		oids.add(X509Extensions.ExtendedKeyUsage);
-		values.add(new X509Extension(false, new DEROctetString(EextendedKeyUsage.getValue())));
+        X509Extension SKIextension = new X509Extension(false, new DEROctetString(new SubjectKeyIdentifierStructure(publicKey)));
 
-		X509Extension BCextension = new X509Extension(true, new DEROctetString(new BasicConstraints(false)));
-		X509Extension SKIextension = new X509Extension(false,
-				new DEROctetString(new SubjectKeyIdentifierStructure(publicKey)));
 
-		certGen.addExtension(X509Extensions.KeyUsage, true, extension.getValue());
-		certGen.addExtension(X509Extensions.BasicConstraints, true, BCextension.getValue());
-		certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, SKIextension.getValue());
+        certGen.addExtension(X509Extensions.ExtendedKeyUsage, true, new ExtendedKeyUsage(KeyPurposeId.id_kp_serverAuth));
+        certGen.addExtension(X509Extensions.KeyUsage, true, extension.getValue());
+        certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(false));
+        certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, SKIextension.getValue());
 
-		certGen.addExtension(X509Extensions.ExtendedKeyUsage, true, EextendedKeyUsage.getValue());
+        X509Certificate cert = certGen.generate(caPrivKey, "BC");
 
-		X509Certificate cert = certGen.generate(caPrivKey, "BC");
+        System.out.println(cert);
 
-		System.out.println(cert);
+        FileOutputStream fos = new FileOutputStream("./test-EE.cer");
+        fos.write(cert.getEncoded());
+        fos.close();
 
-		FileOutputStream fos = new FileOutputStream("./test-EE.cer");
-		fos.write(cert.getEncoded());
-		fos.close();
+        FileOutputStream fos1 = new FileOutputStream("./test-EE-priv.der");
+        fos1.write(keypair.getPrivate().getEncoded());
+        fos1.close();
 
-		FileOutputStream fos1 = new FileOutputStream("./test-EE-priv.der");
-		fos1.write(keypair.getPrivate().getEncoded());
-		fos1.close();
-
-		FileOutputStream fos2 = new FileOutputStream("./test-EE-pub.der");
-		fos2.write(keypair.getPublic().getEncoded());
-		fos2.close();
-	}
+        FileOutputStream fos2 = new FileOutputStream("./test-EE-pub.der");
+        fos2.write(keypair.getPublic().getEncoded());
+        fos2.close();
+    }
 
 }

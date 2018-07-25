@@ -45,7 +45,7 @@ public class SignRoot {
 		BigInteger serialNumber = new BigInteger(256, new Random());
 
 		X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-		X500Principal dnName = new X500Principal("CN=ACME ROOT Certification Authority, OU=ACME Certification Authority, O=ACME Inc, C=US");
+		X500Principal dnName = new X500Principal("CN=DEV ROOT Certification Authority, OU=Very Good DEV Certification Authority, O=VGS Inc, C=US");
 		
 		certGen.setSerialNumber(serialNumber);
 		certGen.setIssuerDN(dnName);
