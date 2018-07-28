@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc3bfc6b-8767-4065-99ca-b701771c843b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubordinateCASigningChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootSelfSigningChain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubCAChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootCASigningChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-EE-priv.der" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-EE-pub.der" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-root-ca-priv.der" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-root-ca-pub.der" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-root-ca.cer" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-sub-ca-priv.der" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-sub-ca.cer" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,7 +19,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -64,13 +67,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.project" />
         <option value="$PROJECT_DIR$/src/com/goyoung/software/test/SignSubCA.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/software/test/SignRoot.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/software/test/SignEECert.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/software/test/Sign_EECertPKCS10.java" />
-        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/StringUtil.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/BeemoChain.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/iBlock2.java" />
@@ -90,6 +91,8 @@
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" />
+        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -128,31 +131,6 @@
             <path>
               <item name="Java_Certification_Authority" type="b2602c69:ProjectViewProjectNode" />
               <item name="pa-bc-x509-certification-authority" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Certification_Authority" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pa-bc-x509-certification-authority" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Certification_Authority" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pa-bc-x509-certification-authority" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Certification_Authority" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pa-bc-x509-certification-authority" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ca" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Java_Certification_Authority" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pa-bc-x509-certification-authority" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="blockchain" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -345,15 +323,16 @@
       <workItem from="1532569043183" duration="1075000" />
       <workItem from="1532724969723" duration="241000" />
       <workItem from="1532727742959" duration="3738000" />
-      <workItem from="1532781462492" duration="4997000" />
+      <workItem from="1532781462492" duration="5207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17501000" />
+    <option name="totallyTimeSpent" value="17711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32952693" />
@@ -362,9 +341,9 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.7177814" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.66721046" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.66721046" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2977273" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2977273" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32626426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -466,13 +445,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.classpath" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pc-bc-x509-certification-authority.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -491,13 +463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="50" column="40" selection-start-line="50" selection-start-column="35" selection-end-line="51" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
@@ -550,13 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootCASigningChain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -573,13 +531,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubordinateCASigningChain.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="40" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -601,10 +552,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+        <state relative-caret-position="300">
+          <caret line="163" column="10" lean-forward="true" selection-start-line="162" selection-end-line="167" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
