@@ -1,9 +1,11 @@
 package com.goyoung.util.pki.x509.ca;
 
-import com.gyoung.util.crypto.blockchain.RootChain;
 import com.gyoung.util.crypto.blockchain.SubCAChain;
 import org.apache.commons.codec.binary.Base64;
+import org.bouncycastle.asn1.DERIA5String;
+import org.bouncycastle.asn1.DERObjectIdentifier;
 import org.bouncycastle.asn1.DEROctetString;
+import org.bouncycastle.asn1.DERSequence;
 import org.bouncycastle.asn1.x509.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
@@ -21,6 +23,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -80,15 +83,6 @@ public class SignSubCA {
         certGen.setPublicKey(keypair.getPublic());
         certGen.setSignatureAlgorithm("SHA256WithRSA");
 
-        // add KeyUsage flags
-        KeyUsage ku = new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyCertSign | KeyUsage.cRLSign);
-        X509Extension extension = new X509Extension(false, new DEROctetString(ku));
-
-        // add EKU OID
-
-        ExtendedKeyUsage extendedKeyUsage = new ExtendedKeyUsage(KeyPurposeId.anyExtendedKeyUsage);
-        X509Extension EKUextension = new X509Extension(false, new DEROctetString(extendedKeyUsage));
-
 
         // add BC, SKI, AKI values
         X509Extension BCextension = new X509Extension(true, new DEROctetString(new BasicConstraints(0)));
@@ -96,42 +90,41 @@ public class SignSubCA {
         AuthorityKeyIdentifierStructure AKI = new AuthorityKeyIdentifierStructure(RootCACert);
 
         // AIA CACert list
-        //GeneralName CACertLocation = new GeneralName(6, new DERIA5String("http://crl.gordonyoung.com/root.crt"));
-        //certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(), false,new AuthorityInformationAccess(X509ObjectIdentifiers.id_ad_caIssuers, CACertLocation));
+        GeneralName CACertLocation = new GeneralName(6, new DERIA5String("http://crl.gordonyoung.com/root.crt"));
+        certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(), false, new AuthorityInformationAccess(X509ObjectIdentifiers.id_ad_caIssuers, CACertLocation));
 
-        // AIA OCSP list
-        // GeneralName OCSPLocation = new GeneralName(6, new
-        // DERIA5String("http://crl.gordonyoung.com/ocsp/"));
-        // certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(),
-        // false,
-        // new AuthorityInformationAccess(
-        // X509ObjectIdentifiers.ocspAccessMethod,
-        // OCSPLocation)
-        // );
+        //TODO: Add an OCSP AIA URI to the array above ^^
+//         // AIA OCSP list
+//         GeneralName OCSPLocation = new GeneralName(6, new
+//         DERIA5String("http://crl.gordonyoung.com/ocsp/"));
+//         certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(),
+//         false,
+//         new AuthorityInformationAccess(
+//         X509ObjectIdentifiers.ocspAccessMethod,
+//         OCSPLocation)
+//         );
 
-//        // Add the CRL distribution point here:
-//        ArrayList<DistributionPoint> distpoints = new ArrayList<DistributionPoint>();
-//        GeneralName gn = new GeneralName(6, new DERIA5String("http://crl.test.com/root.crl"));
-//        GeneralNames gns = new GeneralNames(gn);
-//        DistributionPointName dpn = new DistributionPointName(0, gns);
-//        distpoints.add(new DistributionPoint(dpn, null, null));
-//        CRLDistPoint ext = new CRLDistPoint(distpoints.toArray(new DistributionPoint[0]));
 
-//        // add a CP extention
-//        String cps = "http://crl.gordon.com/cps.hmtl";
-//        PolicyQualifierInfo policyQualifierInfo = new PolicyQualifierInfo(cps);
-//        DERObjectIdentifier policyObjectIdentifier = new DERObjectIdentifier("2.16.840.1.114171.500.0.0");
-//        PolicyInformation policyInformation = new PolicyInformation(policyObjectIdentifier, new DERSequence(policyQualifierInfo));
+        // Add the CRL distribution point here:
+        ArrayList<DistributionPoint> distpoints = new ArrayList<DistributionPoint>();
+        GeneralName gn = new GeneralName(6, new DERIA5String("http://crl.example.com/root.crl"));
+        GeneralNames gns = new GeneralNames(gn);
+        DistributionPointName dpn = new DistributionPointName(0, gns);
+        distpoints.add(new DistributionPoint(dpn, null, null));
+        CRLDistPoint ext = new CRLDistPoint(distpoints.toArray(new DistributionPoint[0]));
 
-//		certGen.addExtension(X509Extensions.CertificatePolicies, false,new DERSequence(policyInformation));
+        // add a 'Certification Policies' CP extention
+        String cps = "http://crl.example.com/cps.hmtl";
+        PolicyQualifierInfo policyQualifierInfo = new PolicyQualifierInfo(cps);
+        DERObjectIdentifier policyObjectIdentifier = new DERObjectIdentifier("2.16.840.1.114171.500.0.0");
+        PolicyInformation policyInformation = new PolicyInformation(policyObjectIdentifier, new DERSequence(policyQualifierInfo));
 
-//		certGen.addExtension(X509Extensions.CRLDistributionPoints.getId(),false, ext);
-
+        //Add some common v3 extentions for a Subordinate-issuing CA
+        certGen.addExtension(X509Extensions.CertificatePolicies, false, new DERSequence(policyInformation));
+        certGen.addExtension(X509Extensions.CRLDistributionPoints.getId(), false, ext);
         certGen.addExtension(X509Extensions.SubjectKeyIdentifier, false, SKIextension.getValue());
-//		certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false, AKI);
-
-//        certGen.addExtension(X509Extensions.ExtendedKeyUsage, true, new ExtendedKeyUsage(KeyPurposeId.id_kp_serverAuth));
-        certGen.addExtension(X509Extensions.KeyUsage, true, extension.getValue());
+        certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false, AKI);
+        certGen.addExtension(X509Extensions.KeyUsage, true, new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyCertSign | KeyUsage.cRLSign));
         certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(true, 0));
 
         X509Certificate cert = certGen.generate(caPrivKey, "BC");
@@ -142,6 +135,8 @@ public class SignSubCA {
         String sSubCACert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
         SubCAChain.go(sSubCACert);
 
+        //do something with the output..
+        //in the real world a PKI CA would be generated on a hardware crypto device for secure RNG and storage
         FileOutputStream fos = new FileOutputStream("./test-sub-ca.cer");
         fos.write(cert.getEncoded());
         fos.close();
@@ -150,9 +145,6 @@ public class SignSubCA {
         fos1.write(keypair.getPrivate().getEncoded());
         fos1.close();
 
-        FileOutputStream fos2 = new FileOutputStream("./test-sub-ca-pub.der");
-        fos2.write(keypair.getPublic().getEncoded());
-        fos2.close();
 
     }
 }

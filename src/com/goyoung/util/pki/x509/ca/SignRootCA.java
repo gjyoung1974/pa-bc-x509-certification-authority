@@ -65,7 +65,7 @@ public class SignRootCA {
         RootChain.go(sRootCert);
 
         //do something with the output..
-        //in the real world a root CA would be generated on a harware crypto device for secure RNG and storage
+        //in the real world a root CA would be generated on a hardware crypto device for secure RNG and storage
         FileOutputStream fos = new FileOutputStream("./test-root-ca.cer");
         fos.write(cert.getEncoded());
         fos.close();

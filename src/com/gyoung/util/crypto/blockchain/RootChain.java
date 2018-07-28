@@ -8,6 +8,7 @@ public class RootChain {
     public static int difficulty = 5;
 
     //TODO: If Exists: Read the existing Root CA block chain and start appending new blocks to it!
+    //TODO return the json so we can save it
     public static void go(String[] args) {
 
         //add our blocks to the blockchain collection:

@@ -74,9 +74,7 @@ public class SignRootCRL {
 		crlGen.setSignatureAlgorithm("SHA256WithRSA");
 		 
 		 
-		//crlGen.addCRLEntry(BigInteger.ONE, now, CRLReason.privilegeWithdrawn);
-		 
-		 
+		crlGen.addCRLEntry(BigInteger.TEN, now, CRLReason.privilegeWithdrawn);
 		crlGen.addExtension(X509Extensions.AuthorityKeyIdentifier,
 		                  false, new AuthorityKeyIdentifierStructure(RootCACert));
 		crlGen.addExtension(X509Extensions.CRLNumber,
