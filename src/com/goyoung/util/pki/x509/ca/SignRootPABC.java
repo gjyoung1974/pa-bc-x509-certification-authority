@@ -60,7 +60,7 @@ public class SignRootPABC {
         // System.out.println(cert);
 
         //Let's only add the public key and not metadata to the blockchain:
-        //TODO: let's hash the Binary Public Key from TBS Certificate and now the base64 encoding DOH
+        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
         String sRootCert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
         RootChain.main(sRootCert);
 
