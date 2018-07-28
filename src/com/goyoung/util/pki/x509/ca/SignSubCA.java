@@ -1,5 +1,8 @@
 package com.goyoung.util.pki.x509.ca;
 
+import com.gyoung.util.crypto.blockchain.RootChain;
+import com.gyoung.util.crypto.blockchain.SubCAChain;
+import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.asn1.DEROctetString;
 import org.bouncycastle.asn1.x509.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -66,7 +69,7 @@ public class SignSubCA {
         // certificate
 
         X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-        X500Principal sName = new X500Principal("CN=ACME DEV Issuing CA, OU=Very Good DEV Certification Authority, O=ACME Inc, C=US");
+        X500Principal sName = new X500Principal("CN=ACME DEV Issuing CA, OU=ACME DEV Certification Authority, O=ACME Inc, C=US");
         X500Principal iName = RootCACert.getSubjectX500Principal();
 
         certGen.setSerialNumber(serialNumber);
@@ -132,7 +135,12 @@ public class SignSubCA {
         certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(true, 0));
 
         X509Certificate cert = certGen.generate(caPrivKey, "BC");
-        System.out.println(cert);
+        //System.out.println(cert);
+
+        //Let's only add the public key and not metadata to the blockchain:
+        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
+        String sSubCACert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
+        SubCAChain.go(sSubCACert);
 
         FileOutputStream fos = new FileOutputStream("./test-sub-ca.cer");
         fos.write(cert.getEncoded());

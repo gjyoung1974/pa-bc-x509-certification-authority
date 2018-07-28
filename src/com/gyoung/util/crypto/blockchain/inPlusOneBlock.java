@@ -2,7 +2,7 @@ package com.gyoung.util.crypto.blockchain;
 
 import java.util.Date;
 
-public class iNPlusOneBlock {
+public class inPlusOneBlock {
 
     public String hash;
     public String previousHash;
@@ -11,7 +11,7 @@ public class iNPlusOneBlock {
     private int nonce;
 
     //iBlock Constructor.
-    public iNPlusOneBlock(String data, String previousHash ) {
+    public inPlusOneBlock(String data, String previousHash ) {
         this.data = data;
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();

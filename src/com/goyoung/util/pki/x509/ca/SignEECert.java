@@ -80,8 +80,8 @@ public class SignEECert {
         // certificate
 
         X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-        X500Principal sName = new X500Principal("CN=fleet.apps.verygood.systems, OU=Fleet-PROD, O=ACME Inc, C=US");
-        X500Principal iName = new X500Principal("CN=ACME ROOT Certification Authority, OU=Very Good Security Certification Authority, O=ACME Inc, C=US");
+        X500Principal sName = new X500Principal("CN=fleet.apps.acme.systems, OU=Fleet-PROD, O=ACME Inc, C=US");
+        X500Principal iName = new X500Principal("CN=ACME ROOT Certification Authority, OU=ACME Security Certification Authority, O=ACME Inc, C=US");
 
         certGen.setSerialNumber(serialNumber);
         certGen.setIssuerDN(iName);

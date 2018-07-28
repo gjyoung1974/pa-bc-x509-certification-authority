@@ -21,7 +21,7 @@ import java.util.Random;
 
 import org.apache.commons.codec.binary.Base64;
 
-public class SignRootPABC {
+public class SignRootCA {
 
     public static void main(String[] args) throws CertificateEncodingException,
             InvalidKeyException, IllegalStateException,
@@ -45,7 +45,7 @@ public class SignRootPABC {
         BigInteger serialNumber = new BigInteger(256, new Random());
 
         X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-        X500Principal dnName = new X500Principal("CN=ACME ROOT Certification Authority, OU=Very Good Security Certification Authority, O=ACME Inc, C=US");
+        X500Principal dnName = new X500Principal("CN=ACME ROOT Certification Authority, OU=ACME Security Certification Authority, O=ACME Inc, C=US");
 
         certGen.setSerialNumber(serialNumber);
         certGen.setIssuerDN(dnName);
