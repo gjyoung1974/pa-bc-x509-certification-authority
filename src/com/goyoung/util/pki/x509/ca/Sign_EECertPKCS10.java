@@ -1,4 +1,4 @@
-package com.goyoung.software.test;
+package com.goyoung.util.pki.x509.ca;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -58,7 +58,7 @@ public class Sign_EECertPKCS10 {
 			SignatureException, IOException, InvalidKeySpecException, CertificateException {
 		Security.addProvider(new BouncyCastleProvider());
 		
-		File csrFile = new File("voltage.der");
+		File csrFile = new File("test-EE-pkcs10.der");
 		BufferedInputStream bis1 = new BufferedInputStream(new FileInputStream(csrFile)); 
 
 		byte[] csryBytes = new byte[(int)csrFile.length()]; 

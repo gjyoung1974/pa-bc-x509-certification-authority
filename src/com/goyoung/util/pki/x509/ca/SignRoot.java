@@ -1,4 +1,4 @@
-package com.goyoung.software.test;
+package com.goyoung.util.pki.x509.ca;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class SignRoot {
 		BigInteger serialNumber = new BigInteger(256, new Random());
 
 		X509V3CertificateGenerator certGen = new X509V3CertificateGenerator();
-		X500Principal dnName = new X500Principal("CN=DEV ROOT Certification Authority, OU=Very Good DEV Certification Authority, O=VGS Inc, C=US");
+		X500Principal dnName = new X500Principal("CN=ACME ROOT Certification Authority, OU=Very Good Security Certification Authority, O=ACME Inc, C=US");
 		
 		certGen.setSerialNumber(serialNumber);
 		certGen.setIssuerDN(dnName);

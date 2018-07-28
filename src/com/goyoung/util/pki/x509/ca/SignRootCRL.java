@@ -1,4 +1,4 @@
-package com.goyoung.software.test;
+package com.goyoung.util.pki.x509.ca;
 
 import java.io.BufferedInputStream;
 import java.io.File;
