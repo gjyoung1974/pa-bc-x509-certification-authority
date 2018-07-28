@@ -7,18 +7,18 @@ public class RootChain {
     public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
     public static int difficulty = 5;
 
-    public static void main(String[] args) {
+    //TODO: If Exists: Read the existing Root CA block chain and start appending new blocks to it!
+    public static void go(String[] args) {
 
         //add our blocks to the blockchain collection:
         System.out.println("Mining block 1... ");
         addBlock(new iBlock("The first block", "0"));
 
         System.out.println("Mining block 2... ");
-//        addBlock(new iBlock("The second block", blockchain.get(blockchain.size() - 1).hash));
         addBlock(new iBlock(args[0], blockchain.get(blockchain.size() - 1).hash));
 
         String blockchainJson = StringUtil.getJson(blockchain);
-        System.out.println("\nThe block chain: ");
+        System.out.println("\nThe Root CA's block chain: ");
         System.out.println(blockchainJson);
     }
 

@@ -30,7 +30,7 @@ public class SignRootPABC {
 
         Security.addProvider(new BouncyCastleProvider());
 
-        // Generate a 1024-bit RSA key pair
+        // Generate a 4096-bit RSA key pair
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(4096);
         KeyPair keypair = keyGen.genKeyPair();
@@ -62,7 +62,7 @@ public class SignRootPABC {
         //Let's only add the public key and not metadata to the blockchain:
         //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
         String sRootCert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        RootChain.main(sRootCert);
+        RootChain.go(sRootCert);
 
         //do something with the output..
         //in the real world a root CA would be generated on a harware crypto device for secure RNG and storage
