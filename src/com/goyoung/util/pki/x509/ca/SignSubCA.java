@@ -1,6 +1,6 @@
 package com.goyoung.util.pki.x509.ca;
 
-import com.gyoung.util.crypto.blockchain.SubCAChain;
+import com.gyoung.util.crypto.blockchain.RootCASigningChain;
 import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.asn1.DERIA5String;
 import org.bouncycastle.asn1.DERObjectIdentifier;
@@ -90,20 +90,17 @@ public class SignSubCA {
         AuthorityKeyIdentifierStructure AKI = new AuthorityKeyIdentifierStructure(RootCACert);
 
         // AIA CACert list
-        GeneralName CACertLocation = new GeneralName(6, new DERIA5String("http://crl.gordonyoung.com/root.crt"));
+        GeneralName CACertLocation = new GeneralName(6, new DERIA5String("http://aia.example.com/root.crt"));
         certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(), false, new AuthorityInformationAccess(X509ObjectIdentifiers.id_ad_caIssuers, CACertLocation));
 
         //TODO: Add an OCSP AIA URI to the array above ^^
-//         // AIA OCSP list
-//         GeneralName OCSPLocation = new GeneralName(6, new
-//         DERIA5String("http://crl.gordonyoung.com/ocsp/"));
-//         certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(),
-//         false,
-//         new AuthorityInformationAccess(
-//         X509ObjectIdentifiers.ocspAccessMethod,
-//         OCSPLocation)
-//         );
-
+        //GeneralName OCSPLocation = new GeneralName(6, new
+        //DERIA5String("http://aia.example.com/ocsp/"));
+        //certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(),
+        //false,
+        //new AuthorityInformationAccess(
+        //X509ObjectIdentifiers.ocspAccessMethod,
+        //OCSPLocation));
 
         // Add the CRL distribution point here:
         ArrayList<DistributionPoint> distpoints = new ArrayList<DistributionPoint>();
@@ -114,9 +111,9 @@ public class SignSubCA {
         CRLDistPoint ext = new CRLDistPoint(distpoints.toArray(new DistributionPoint[0]));
 
         // add a 'Certification Policies' CP extention
-        String cps = "http://crl.example.com/cps.hmtl";
+        String cps = "http://cps.example.com/cps.hmtl";
         PolicyQualifierInfo policyQualifierInfo = new PolicyQualifierInfo(cps);
-        DERObjectIdentifier policyObjectIdentifier = new DERObjectIdentifier("2.16.840.1.114171.500.0.0");
+        DERObjectIdentifier policyObjectIdentifier = new DERObjectIdentifier("1.3.6.1.5.5.7.2.1");
         PolicyInformation policyInformation = new PolicyInformation(policyObjectIdentifier, new DERSequence(policyQualifierInfo));
 
         //Add some common v3 extentions for a Subordinate-issuing CA
@@ -127,13 +124,15 @@ public class SignSubCA {
         certGen.addExtension(X509Extensions.KeyUsage, true, new KeyUsage(KeyUsage.digitalSignature | KeyUsage.keyCertSign | KeyUsage.cRLSign));
         certGen.addExtension(X509Extensions.BasicConstraints, true, new BasicConstraints(true, 0));
 
+        //sign the cert
         X509Certificate cert = certGen.generate(caPrivKey, "BC");
         //System.out.println(cert);
 
+        //Add it to the BlockChain 'log'
         //Let's only add the public key and not metadata to the blockchain:
         //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
         String sSubCACert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        SubCAChain.go(sSubCACert);
+        RootCASigningChain.go(sSubCACert);
 
         //do something with the output..
         //in the real world a PKI CA would be generated on a hardware crypto device for secure RNG and storage

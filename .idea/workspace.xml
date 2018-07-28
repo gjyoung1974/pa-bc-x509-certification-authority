@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc3bfc6b-8767-4065-99ca-b701771c843b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubordinateCASigningChain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_EECertPKCS10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootSelfSigningChain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubCAChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootCASigningChain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-root-ca-priv.der" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-root-ca-pub.der" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-root-ca.cer" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-sub-ca-priv.der" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-sub-ca-pub.der" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test-sub-ca.cer" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,30 +26,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SignSubCA.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5115#5134#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignEECert.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="119" column="19" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="120" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -65,10 +45,13 @@
       <find>VGS</find>
       <find>Very Good</find>
       <find>verygood</find>
+      <find>KeyUsa</find>
+      <find>gordonyoung.us</find>
     </findStrings>
     <replaceStrings>
       <replace>ACME</replace>
       <replace>acme</replace>
+      <replace>example.com</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -98,10 +81,15 @@
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootPABC.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/iBlock.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubCAChain.java" />
-        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" />
         <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java" />
+        <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootSelfSigningChain.java" />
+        <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootCASigningChain.java" />
+        <option value="$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubordinateCASigningChain.java" />
+        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java" />
         <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java" />
+        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java" />
+        <option value="$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java" />
       </list>
     </option>
   </component>
@@ -196,9 +184,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SignSubCA">
-    <configuration name="RootChain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.gyoung.util.crypto.blockchain.RootChain" />
+  <component name="RunManager" selected="Application.SignEECert">
+    <configuration name="RootSelfSigningChain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.gyoung.util.crypto.blockchain.RootSelfSigningChain" />
       <module name="pc-bc-x509-certification-authority" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -209,18 +197,7 @@
       </extension>
     </configuration>
     <configuration name="SignEECert" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.goyoung.software.test.SignEECert" />
-      <module name="pc-bc-x509-certification-authority" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.goyoung.software.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="SignRoot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.goyoung.util.pki.x509.ca.SignRoot" />
+      <option name="MAIN_CLASS_NAME" value="com.goyoung.util.pki.x509.ca.SignEECert" />
       <module name="pc-bc-x509-certification-authority" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -232,6 +209,17 @@
     </configuration>
     <configuration name="SignRootCA" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.goyoung.util.pki.x509.ca.SignRootCA" />
+      <module name="pc-bc-x509-certification-authority" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.goyoung.util.pki.x509.ca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="SignRootCRL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.goyoung.util.pki.x509.ca.SignRootCRL" />
       <module name="pc-bc-x509-certification-authority" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -322,19 +310,19 @@
     </configuration>
     <list>
       <item itemvalue="Maven.build" />
-      <item itemvalue="Application.SignEECert" />
-      <item itemvalue="Application.SignRoot (1)" />
       <item itemvalue="Application.SignRootCA" />
-      <item itemvalue="Application.RootChain" />
+      <item itemvalue="Application.RootSelfSigningChain" />
       <item itemvalue="Application.SignSubCA" />
+      <item itemvalue="Application.SignRootCRL" />
+      <item itemvalue="Application.SignEECert" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SignSubCA" />
-        <item itemvalue="Application.SignRootCA" />
-        <item itemvalue="Application.RootChain" />
-        <item itemvalue="Application.SignRoot (1)" />
         <item itemvalue="Application.SignEECert" />
+        <item itemvalue="Application.SignSubCA" />
+        <item itemvalue="Application.SignRootCRL" />
+        <item itemvalue="Application.SignRootCA" />
+        <item itemvalue="Application.RootSelfSigningChain" />
       </list>
     </recent_temporary>
   </component>
@@ -357,16 +345,15 @@
       <workItem from="1532569043183" duration="1075000" />
       <workItem from="1532724969723" duration="241000" />
       <workItem from="1532727742959" duration="3738000" />
-      <workItem from="1532781462492" duration="3564000" />
+      <workItem from="1532781462492" duration="4997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16068000" />
+    <option name="totallyTimeSpent" value="17501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.32952693" />
@@ -374,10 +361,10 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.6166395" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.7177814" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.66721046" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2977273" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2977273" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32626426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -391,7 +378,7 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.6166395" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.31484503" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2977273" />
@@ -500,13 +487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="143" column="39" selection-start-line="143" selection-end-line="144" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRoot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -570,55 +550,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubCAChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding>
-            <element signature="e#161#169#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCRL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
+        <state relative-caret-position="183">
           <caret line="76" column="78" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootCASigningChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/RootSelfSigningChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/gyoung/util/crypto/blockchain/SubordinateCASigningChain.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="131" column="8" selection-start-line="131" selection-start-column="8" selection-end-line="131" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignRootCA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+        <state relative-caret-position="210">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignEECert.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="119" column="19" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="120" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/SignSubCA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+        <state relative-caret-position="168">
+          <caret line="126" column="23" selection-start-line="126" selection-start-column="23" selection-end-line="126" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5115#5134#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/goyoung/util/pki/x509/ca/Sign_SubCA_Cert_PKCS10.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
         </state>
       </provider>
     </entry>

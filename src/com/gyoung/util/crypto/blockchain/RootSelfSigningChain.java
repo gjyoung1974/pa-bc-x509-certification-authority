@@ -2,12 +2,15 @@ package com.gyoung.util.crypto.blockchain;
 
 import java.util.ArrayList;
 
-public class SubCAChain {
+//Logging stuff directly in the path of the Root's private key
+//'Self Signed' stuff: Root Cert, CRLs etc..
+public class RootSelfSigningChain {
 
     public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
     public static int difficulty = 5;
 
-    //TODO: If Exists: Read the existing SubCA block chain and start appending new blocks to it!
+    //TODO: If Exists: Read the existing Root CA block chain and start appending new blocks to it!
+    //TODO return the json so we can save it
     public static void go(String[] args) {
 
         //add our blocks to the blockchain collection:
@@ -18,7 +21,7 @@ public class SubCAChain {
         addBlock(new iBlock(args[0], blockchain.get(blockchain.size() - 1).hash));
 
         String blockchainJson = StringUtil.getJson(blockchain);
-        System.out.println("\nThe Subordinate CA's block chain: ");
+        System.out.println("\nThe Root CA's block chain: ");
         System.out.println(blockchainJson);
     }
 

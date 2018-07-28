@@ -118,7 +118,7 @@ public class Sign_EECertPKCS10 {
 				
 				// Add the CRL distribution point here:
 				ArrayList<DistributionPoint> distpoints = new ArrayList<DistributionPoint>();
-				GeneralName gn = new GeneralName(6, new DERIA5String("http://crl.gordonyoung.us/root.crl"));
+				GeneralName gn = new GeneralName(6, new DERIA5String("http://crl.example.com/root.crl"));
 				GeneralNames gns = new GeneralNames(gn);
 				DistributionPointName dpn = new DistributionPointName(0, gns);
 				distpoints.add(new DistributionPoint(dpn, null, null));
@@ -129,11 +129,11 @@ public class Sign_EECertPKCS10 {
 			        // AIA extension for CA Issuers
 			        list.add(new AccessDescription(AccessDescription.id_ad_caIssuers,
 			                                       new GeneralName(GeneralName.uniformResourceIdentifier,
-			                                                       new DERIA5String("http://aia.gordonyoung.us/root.crt"))));
+			                                                       new DERIA5String("http://aia.example.com/root.crt"))));
 			        // AIA extension for OCSP access method.
 			        list.add(new AccessDescription(AccessDescription.id_ad_ocsp,
 			                                       new GeneralName(GeneralName.uniformResourceIdentifier,
-			                                                       new DERIA5String("http://ocsp.gordonyoung.us/ocsp/"))));
+			                                                       new DERIA5String("http://ocsp.example.com/ocsp/"))));
 
 			        certGen.addExtension(X509Extensions.AuthorityInfoAccess.getId(),
                          false,
@@ -141,7 +141,7 @@ public class Sign_EECertPKCS10 {
 			        
 
 				// add a CP extention
-				String cps = "http://pki.gordonyoung.us/cps.hmtl";
+				String cps = "http://pki.example.com/cps.hmtl";
 				PolicyQualifierInfo policyQualifierInfo = new PolicyQualifierInfo(cps);
 				DERObjectIdentifier policyObjectIdentifier = new DERObjectIdentifier("2.16.840.1.114171.500.0.0");
 				PolicyInformation policyInformation = new PolicyInformation(policyObjectIdentifier, new DERSequence(policyQualifierInfo));
