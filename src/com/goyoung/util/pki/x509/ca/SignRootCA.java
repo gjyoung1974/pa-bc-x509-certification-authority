@@ -1,5 +1,6 @@
 package com.goyoung.util.pki.x509.ca;
 
+import com.gyoung.util.crypto.blockchain.RootCASigningChain;
 import com.gyoung.util.crypto.blockchain.RootSelfSigningChain;
 
 import org.bouncycastle.asn1.x509.BasicConstraints;
@@ -15,6 +16,7 @@ import java.math.BigInteger;
 import java.security.*;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -61,10 +63,8 @@ public class SignRootCA {
         // System.out.println(cert);
 
         //Add it to the BlockChain 'log'
-        //Let's only add the public key and not metadata to the blockchain:
-        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
-        String sRootCert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        RootSelfSigningChain.go(sRootCert);
+        //Let's only add the public key and not x509 metadata to the blockchain:
+        RootCASigningChain.bGo(cert.getPublicKey().getEncoded());
 
         //do something with the output..
         //in the real world a root CA would be generated on a hardware crypto device for secure RNG and storage

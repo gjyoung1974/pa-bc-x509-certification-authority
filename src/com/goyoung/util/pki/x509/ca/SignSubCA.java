@@ -129,10 +129,8 @@ public class SignSubCA {
         //System.out.println(cert);
 
         //Add it to the BlockChain 'log'
-        //Let's only add the public key and not metadata to the blockchain:
-        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
-        String sSubCACert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        RootCASigningChain.go(sSubCACert);
+        //Let's only add the public key and not x509 metadata to the blockchain:
+        RootCASigningChain.bGo(cert.getPublicKey().getEncoded());
 
         //do something with the output..
         //in the real world a PKI CA would be generated on a hardware crypto device for secure RNG and storage

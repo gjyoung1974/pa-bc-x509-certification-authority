@@ -24,6 +24,21 @@ public class SubordinateCASigningChain {
         System.out.println(blockchainJson);
     }
 
+    public static void bGo(byte[] bData) {
+
+        //add our blocks to the blockchain collection:
+        System.out.println("Mining block 1... ");
+        addBlock(new iBlock("The first block", "0"));
+
+        System.out.println("Mining block 2... ");
+        addBlock(new iBlock(bData, blockchain.get(blockchain.size() - 1).hash));
+
+        String blockchainJson = StringUtil.getJson(blockchain);
+        System.out.println("\nThe Subordinate CA's block chain: ");
+        System.out.println(blockchainJson);
+    }
+
+
     public static Boolean isChainValid() {
         iBlock currentIBlock;
         iBlock previousIBlock;
