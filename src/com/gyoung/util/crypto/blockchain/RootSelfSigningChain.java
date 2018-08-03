@@ -25,6 +25,21 @@ public class RootSelfSigningChain {
         System.out.println(blockchainJson);
     }
 
+    //TODO: If Exists: Read the existing SubCA block chain and start appending new blocks to it!
+    public static void bGo(byte[] bIn) {
+
+        //add our blocks to the blockchain collection:
+        System.out.println("Mining block 1... ");
+        addBlock(new iBlock("The first block", "0"));
+
+        System.out.println("Mining block 2... ");
+        addBlock(new iBlock(bIn, blockchain.get(blockchain.size() - 1).hash));
+
+        String blockchainJson = StringUtil.getJson(blockchain);
+        System.out.println("\nThe Subordinate CA's block chain: ");
+        System.out.println(blockchainJson);
+    }
+
     public static Boolean isChainValid() {
         iBlock currentIBlock;
         iBlock previousIBlock;

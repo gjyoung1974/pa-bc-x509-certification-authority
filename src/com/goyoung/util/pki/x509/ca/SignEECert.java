@@ -131,9 +131,7 @@ public class SignEECert {
 
         //Add it to the BlockChain 'log'
         //Let's only add the public key and not metadata to the blockchain:
-        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
-        String sEECert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        SubordinateCASigningChain.go(sEECert);
+        SubordinateCASigningChain.bGo(cert.getPublicKey().getEncoded());
 
         FileOutputStream fos = new FileOutputStream("./test-EE.cer");
         fos.write(cert.getEncoded());

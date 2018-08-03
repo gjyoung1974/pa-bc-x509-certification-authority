@@ -64,7 +64,7 @@ public class SignRootCA {
 
         //Add it to the BlockChain 'log'
         //Let's only add the public key and not x509 metadata to the blockchain:
-        RootCASigningChain.bGo(cert.getPublicKey().getEncoded());
+        RootSelfSigningChain.bGo(cert.getPublicKey().getEncoded());
 
         //do something with the output..
         //in the real world a root CA would be generated on a hardware crypto device for secure RNG and storage

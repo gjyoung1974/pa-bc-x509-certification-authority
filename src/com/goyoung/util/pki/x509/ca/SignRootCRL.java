@@ -29,6 +29,7 @@ import java.util.Date;
 
 import javax.security.auth.x500.X500Principal;
 
+import com.gyoung.util.crypto.blockchain.RootSelfSigningChain;
 import org.bouncycastle.asn1.x509.CRLNumber;
 import org.bouncycastle.asn1.x509.CRLReason;
 import org.bouncycastle.asn1.x509.X509Extensions;
@@ -78,13 +79,13 @@ public class SignRootCRL {
 		crlGen.addExtension(X509Extensions.AuthorityKeyIdentifier,
 		                  false, new AuthorityKeyIdentifierStructure(RootCACert));
 		crlGen.addExtension(X509Extensions.CRLNumber,
-		                  false, new CRLNumber(BigInteger.ONE));
-		 
-		 
+		                  false, new CRLNumber(BigInteger.ONE)); //TODO get this from CA's Database
+
 		X509CRL    crl = crlGen.generateX509CRL(caCrlPrivateKey, "BC");
-		
-		System.out.write(crl.getEncoded());
-		
+
+		//Add root CRL to the RootCA's block Chain
+		RootSelfSigningChain.bGo(crl.getEncoded());
+
 		FileOutputStream fos = new FileOutputStream("./test-root-crl.crl");
 		
 		fos.write(crl.getEncoded());

@@ -27,6 +27,7 @@ import java.util.Random;
 import javax.security.auth.x500.X500Principal;
 
 import com.gyoung.util.crypto.blockchain.RootCASigningChain;
+import com.gyoung.util.crypto.blockchain.SubordinateCASigningChain;
 import org.apache.commons.codec.binary.Base64;
 import org.bouncycastle.asn1.ASN1EncodableVector;
 import org.bouncycastle.asn1.DERIA5String;
@@ -51,6 +52,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.x509.X509V3CertificateGenerator;
 import org.bouncycastle.x509.extension.AuthorityKeyIdentifierStructure;
 import org.bouncycastle.x509.extension.SubjectKeyIdentifierStructure;
+
 
 public class Sign_EECertPKCS10 {
 
@@ -162,9 +164,7 @@ public class Sign_EECertPKCS10 {
         //Add it to the BlockChain 'log'
         //System.out.println(cert);
         //Let's only add the public key and not metadata to the blockchain:
-        //TODO: let's hash the Binary Public Key from TBS Certificate and not the base64 encoding DOH!!
-        String sSubCACert[] = {Base64.encodeBase64String(cert.getPublicKey().getEncoded())};
-        RootCASigningChain.go(sSubCACert);
+        SubordinateCASigningChain.bGo(cert.getPublicKey().getEncoded());
 
         FileOutputStream fos = new FileOutputStream("./test-EE-pkcs10.cer");
         fos.write(cert.getEncoded());
